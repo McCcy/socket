@@ -26,7 +26,6 @@ public class ServerThread extends Thread{
                 System.out.println("接收服务器的信息："+reply);
             }
             br.close();
-            socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -5,4 +5,5 @@ package Service;
  * 2018/4/28 11:09
  */
 public interface ConnectionFactory {
+    SocketConnection createSocketConnection(String ip);
 }
