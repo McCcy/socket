@@ -16,7 +16,8 @@ public class MessageTemplate implements Message {
     private List<String> paramsList; // ("restaurant_name","num","food_name","a");//Enum
 
     public MessageTemplate(String templateId) {
-        this.templateStr = "my name is ${name}, my age is ${age}";
+//        this.templateStr = "my name is ${name}, my age is ${age}";
+        this.templateStr = "\u001B@\u001C!\u0008我的名字是：${name}\n\u001C! 我的年龄：${age}\u001Bd\u0004\u001DVB ";
         this.paramsList = new ArrayList<String>(Arrays.asList("name", "age"));
     }
 

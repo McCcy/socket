@@ -1,6 +1,5 @@
 package Service;
 
-import java.io.BufferedReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -9,17 +8,16 @@ import java.net.Socket;
  * 2018/4/28 11:20
  */
 public class Sever {
+
     private static Socket socket;
-    private static BufferedReader br = null;
 
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(9100);
             System.out.println("服务器正常启动");
             while (true) {
-              socket = serverSocket.accept();//阻塞方法
-                System.out.println("【" + Thread.currentThread().getName() + "】连接成功" + socket.getRemoteSocketAddress());
-              new ServerThread(socket).start();
+                socket = serverSocket.accept();//阻塞方法
+                new ServerThread(socket).start();
             }
         } catch (Exception e) {
             e.printStackTrace();

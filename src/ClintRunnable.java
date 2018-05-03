@@ -1,7 +1,6 @@
 import Service.ConnectionManage;
 import Service.Message;
 import Service.SocketConnection;
-import Service.impl.ConnectionManageImpl;
 import Service.impl.MessageTemplate;
 
 import java.util.HashMap;
@@ -13,19 +12,23 @@ import java.util.Map;
  */
 public class ClintRunnable implements Runnable {
 
-    ConnectionManage connectionManage = new ConnectionManageImpl();
+    private ConnectionManage connectionManage;
+
+    public ClintRunnable(ConnectionManage connectionManage) {
+        this.connectionManage = connectionManage;
+    }
 
     @Override
     public void run() {
-        for (int i = 0; i < 5; i++) {
-            SocketConnection socketConnection = connectionManage.getSocketConnection("1");
+
+        for (int i = 0; i < 500; i++) {
+            SocketConnection socketConnection = connectionManage.getSocketConnection(i + "");
             Message message = new MessageTemplate("1");
             Map<String, String> dataMap = new HashMap<String, String>();
             dataMap.put("name", "ccy");
             dataMap.put("age", "18");
             socketConnection.sendMsg(message.getText(dataMap));
-            System.out.println("【 " + Thread.currentThread().getName() + " 】   客户端启动成功！！！");
+            System.out.println("【 " + Thread.currentThread().getName() + i + " 】   客户端启动成功！！！");
         }
-
     }
 }

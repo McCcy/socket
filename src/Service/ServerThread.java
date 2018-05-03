@@ -20,6 +20,8 @@ public class ServerThread extends Thread{
     @Override
     public void run() {
         try {
+//            Thread.currentThread().sleep(10 * 1000);
+            System.out.println("【" + Thread.currentThread().getName() + "】连接成功::::::::" + socket.hashCode());
             br=new BufferedReader(new InputStreamReader(socket.getInputStream(),"GBK"));
             String reply=null;
             while(!((reply=br.readLine())==null)){

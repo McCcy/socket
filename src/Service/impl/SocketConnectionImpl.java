@@ -12,19 +12,20 @@ import java.net.Socket;
  */
 public class SocketConnectionImpl implements SocketConnection {
     private Socket socket;
+    OutputStreamWriter writer;
+    OutputStream ot;
 
     public SocketConnectionImpl(Socket socket) {
         this.socket = socket;
-
     }
 
     @Override
     public void sendMsg(String msg) {
         try {
-            OutputStream ot = socket.getOutputStream();
-            OutputStreamWriter writer = new OutputStreamWriter(ot, "GBK");
+            ot = socket.getOutputStream();
+            writer = new OutputStreamWriter(ot, "GBK");
             writer.write(msg);
-            writer.close();
+            writer.flush();
         } catch (Exception e) {
             System.out.println("【SocketConnectionImpl 的 sendMsg()】中抛出了异常");
             e.printStackTrace();
